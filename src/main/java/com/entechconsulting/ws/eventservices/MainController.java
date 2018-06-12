@@ -17,7 +17,17 @@ public class MainController{
 
   private TempPiRepository tempPiRepository;
   @GetMapping(path="/all")
-  public @ResponseBody Iterable<TempPi> getAllEvents(){
-    return tempPiRepository.findAll();
+  public @ResponseBody String getAllEvents(){
+    StringBuilder builder = new StringBuilder();
+  	for (TempPi pi : tempPiRepository.findAll()) {
+      builder.append("Temp: " + pi.getTemp().toString() + "\n");
+      builder.append("Time: " + pi.getEventTime().toString() + "\n");
+      builder.append("\n");
+
+  		System.out.println("Temp: " + pi.getTemp().toString());
+  		System.out.println("Time: " + pi.getEventTime().toString());
+  		System.out.println();
+  	}
+    return builder.toString();
   }
 }
