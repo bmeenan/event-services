@@ -1,7 +1,7 @@
 
 package com.entechconsulting.ws.eventservices;
 
-//import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.CrudRepository;
 
 import com.entechconsulting.ws.eventservices.Event;
 

@@ -14,7 +14,8 @@ import com.entechconsulting.ws.eventservices.Event;
 @RequestMapping(path="/demo")
 public class MainController{
   @GetMapping(path="/all")
-  public @ResponseBody String getAllEvents(){
-    return "Hello there";
+  public @ResponseBody void getAllEvents(){
+    System.out.println("Hi ya");
+    System.out.println("fam");
   }
 }
