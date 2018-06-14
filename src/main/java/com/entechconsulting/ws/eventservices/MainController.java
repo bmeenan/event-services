@@ -28,7 +28,7 @@ public class MainController{
 
   @GetMapping(path="/motions")
   public @ResponseBody Iterable<MotionEvent> getMotionEvents(){
-    return motionEventRepository.findAll();
+	  return motionEventRepository.findAllEvent();
   }
 
   @RequestMapping(value="/addMotion", method = RequestMethod.POST)
