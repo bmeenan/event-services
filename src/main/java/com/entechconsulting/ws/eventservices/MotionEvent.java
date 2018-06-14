@@ -1,12 +1,10 @@
 package com.entechconsulting.ws.eventservices;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.*;
-import java.util.*;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="motion_event")
@@ -20,7 +18,15 @@ public class MotionEvent{
   private String sensor_id;
   private String raw_data;
   private byte[] img;
-
+  
+  public MotionEvent() {
+	  
+  }
+  
+  public MotionEvent(Integer id,String occurred_ts) {
+	  this.id = id;
+	  this.occurred_ts = occurred_ts;
+  }
   //Getters
   public Integer getId(){
     return id;
