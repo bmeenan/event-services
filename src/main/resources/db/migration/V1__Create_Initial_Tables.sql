@@ -3,7 +3,7 @@ CREATE TABLE `entechpi`.`event` (
   `occurred_ts` VARCHAR(45) NOT NULL,
   `received_ts` VARCHAR(45) NOT NULL,
   `pi_type` VARCHAR(45) NOT NULL,
-  `sensor_ id` VARCHAR(45) NOT NULL,
+  `sensor_id` VARCHAR(45) NOT NULL,
   `raw_data` TEXT NOT NULL,
   PRIMARY KEY (`id`)
 );

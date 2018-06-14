@@ -7,19 +7,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.entechconsulting.ws.eventservices.TempPi;
-import com.entechconsulting.ws.eventservices.TempPiRepository;
+import com.entechconsulting.ws.eventservices.Event;
+import com.entechconsulting.ws.eventservices.EventRepository;
 
 @Controller
 @RequestMapping(path="/demo")
 public class MainController{
   @Autowired
 
-  private TempPiRepository tempPiRepository;
+  private EventRepository eventRepository;
   @GetMapping(path="/all")
-  public @ResponseBody Iterable<TempPi> getAllEvents(){
-
-    return tempPiRepository.findAll();
-
+  public @ResponseBody Iterable<Event> getAllEvents(){
+    return eventRepository.findAll();
   }
 }

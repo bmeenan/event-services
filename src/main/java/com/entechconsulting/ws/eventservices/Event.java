@@ -1,6 +1,7 @@
 package com.entechconsulting.ws.eventservices;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,6 +37,26 @@ public class Event{
   }
   public String getRawData(){
     return raw_data;
+  }
+
+  //Setters
+  public void setId(Integer id){
+    this.id = id;
+  }
+  public void setOccuredTs(String occurred_ts){
+    this.occurred_ts = occurred_ts;
+  }
+  public void setReceivedTs(String received_ts){
+    this.received_ts = received_ts;
+  }
+  public void setPiType(String pi_type){
+    this.pi_type = pi_type;
+  }
+  public void setSensorId(String sensor_id){
+    this.sensor_id = sensor_id;
+  }
+  public void setRawData(String raw_data){
+    this.raw_data = raw_data;
   }
 
 }
