@@ -18,7 +18,9 @@ public class MainController{
   private TempEventRepository tempEventRepository;
   @Autowired
   private MotionEventRepository motionEventRepository;
-
+  @Autowired
+  private EventService eventService;
+  
   @GetMapping(path="/temps")
   public @ResponseBody Iterable<TempEvent> getTempEvents(){
     return tempEventRepository.findAll();
@@ -30,8 +32,9 @@ public class MainController{
   }
 
   @RequestMapping(value="/addMotion", method = RequestMethod.POST)
-  public ResponseEntity addMotion(@RequestBody Object motion) {
+  public ResponseEntity addMotion(@RequestBody MotionEventDTO motion) {
       System.out.println("Motion Detected " + motion);
+      eventService.saveMotionEvent(motion);
       return ResponseEntity.status(HttpStatus.OK).build();
   }
 }
