@@ -7,17 +7,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.entechconsulting.ws.eventservices.Event;
-import com.entechconsulting.ws.eventservices.EventRepository;
+import com.entechconsulting.ws.eventservices.TempEvent;
+import com.entechconsulting.ws.eventservices.MotionEvent;
+import com.entechconsulting.ws.eventservices.TempEventRepository;
+import com.entechconsulting.ws.eventservices.MotionEventRepository;
 
 @Controller
 @RequestMapping(path="/demo")
 public class MainController{
   @Autowired
+  private TempEventRepository tempEventRepository;
+  @Autowired
+  private MotionEventRepository motionEventRepository;
 
-  private EventRepository eventRepository;
-  @GetMapping(path="/all")
-  public @ResponseBody Iterable<Event> getAllEvents(){
-    return eventRepository.findAll();
+  @GetMapping(path="/temps")
+  public @ResponseBody Iterable<TempEvent> getTempEvents(){
+    return tempEventRepository.findAll();
+  }
+
+  @GetMapping(path="/motions")
+  public @ResponseBody Iterable<MotionEvent> getMotionEvents(){
+    return motionEventRepository.findAll();
   }
 }
