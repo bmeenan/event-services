@@ -4,7 +4,7 @@ CREATE TABLE `entechpi`.`motion_event` (
   `received_ts` VARCHAR(45) NOT NULL,
   `sensor_id` VARCHAR(45) NOT NULL,
   `raw_data` TEXT NOT NULL,
-  `img` BLOB NOT NULL,
+  `img` MEDIUMBLOB NOT NULL,
   PRIMARY KEY (`id`)
 );
 CREATE TABLE `entechpi`.`temp_event` (

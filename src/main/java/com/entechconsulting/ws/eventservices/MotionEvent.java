@@ -13,6 +13,7 @@ import java.util.*;
 public class MotionEvent{
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private String occurred_ts;
   private String received_ts;
