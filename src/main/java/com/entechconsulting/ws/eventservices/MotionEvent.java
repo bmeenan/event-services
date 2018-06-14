@@ -24,7 +24,7 @@ public class MotionEvent{
   public Integer getId(){
     return id;
   }
-  public String getOccuredTs(){
+  public String getOccurredTs(){
     return occurred_ts;
   }
   public String getReceivedTs(){
@@ -44,7 +44,7 @@ public class MotionEvent{
   public void setId(Integer id){
     this.id = id;
   }
-  public void setOccuredTs(String occurred_ts){
+  public void setOccurredTs(String occurred_ts){
     this.occurred_ts = occurred_ts;
   }
   public void setReceivedTs(String received_ts){
