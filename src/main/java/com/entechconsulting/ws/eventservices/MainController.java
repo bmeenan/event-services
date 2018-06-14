@@ -31,6 +31,7 @@ public class MainController{
 
   @RequestMapping(value="/addMotion", method = RequestMethod.POST)
   public ResponseEntity addMotion(@RequestBody Object motion) {
+      System.out.println("Motion Detected " + motion);
       return ResponseEntity.status(HttpStatus.OK).build();
   }
 }
