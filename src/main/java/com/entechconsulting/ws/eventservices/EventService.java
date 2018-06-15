@@ -2,6 +2,9 @@ package com.entechconsulting.ws.eventservices;
 
 import java.time.LocalDate;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +12,10 @@ import org.springframework.stereotype.Service;
 public class EventService {
 	@Autowired
 	private MotionEventRepository motionEventRepository;
+
+	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	Date date = new Date();
+
 	public void saveMotionEvent(MotionEventDTO dto) {
 		//save motion event repository object
 		MotionEvent motionEvent = toMotionEvent(dto);
@@ -20,8 +27,8 @@ public class EventService {
 		motionEvent.setRawData(dto.toString());
 		motionEvent.setImg(dto.getImg().getBytes());
 		motionEvent.setSensorId(dto.getSensorId());
-		motionEvent.setReceivedTs(LocalDate.now().toString());
-		
+		motionEvent.setReceivedTs(formatter.format(date).toString());
+
 		return motionEvent;
 	}
 }
