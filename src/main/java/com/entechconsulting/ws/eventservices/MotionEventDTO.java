@@ -1,16 +1,13 @@
 package com.entechconsulting.ws.eventservices;
 
 public class MotionEventDTO {
-	/*{"event_occurred":"14:55:02.789911"
-		,"sensorId":"motion1"
-			,"deviceId":"motionPi1"
-				,"img":"1"}
-	 */
+	//curl --header "Content-Type: application/json" --request POST --data '{"event_occurred":"2018-15-06 14:55:02.789911","sensorId":"motion1","deviceId":"motionPi1","img":"1"}' http://34.239.113.101:8080/demo/addMotion
+
 	private String event_occurred;
 	private String sensorId;
 	private String deviceId;
 	private String img;
-	
+
 	public String getEvent_occurred() {
 		return event_occurred;
 	}
@@ -35,6 +32,6 @@ public class MotionEventDTO {
 	public void setImg(String img) {
 		this.img = img;
 	}
-	
-	
+
+
 }
