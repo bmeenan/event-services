@@ -13,7 +13,7 @@ public class EventService {
 	@Autowired
 	private MotionEventRepository motionEventRepository;
 
-	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 	Date date = new Date();
 
 	public void saveMotionEvent(MotionEventDTO dto) {
@@ -23,7 +23,7 @@ public class EventService {
 	}
 	private MotionEvent toMotionEvent(MotionEventDTO dto) {
 		MotionEvent motionEvent = new MotionEvent();
-		motionEvent.setOccurredTs(dto.getEvent_occurred());
+		motionEvent.setOccurredTs(dto.getEvent_occurred().split("\\.")[0]);
 		motionEvent.setRawData(dto.toString());
 		motionEvent.setImg(dto.getImg().getBytes());
 		motionEvent.setSensorId(dto.getSensorId());
