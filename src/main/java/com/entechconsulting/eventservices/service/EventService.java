@@ -1,4 +1,4 @@
-package com.entechconsulting.eventservices;
+package com.entechconsulting.eventservices.service;
 
 import java.time.LocalDate;
 
@@ -7,6 +7,10 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.entechconsulting.eventservices.dto.MotionEventDTO;
+import com.entechconsulting.eventservices.repository.MotionEvent;
+import com.entechconsulting.eventservices.repository.MotionEventRepository;
 
 @Service
 public class EventService {

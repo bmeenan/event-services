@@ -1,4 +1,4 @@
-package com.entechconsulting.eventservices;
+package com.entechconsulting.eventservices.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

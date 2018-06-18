@@ -1,4 +1,4 @@
-package com.entechconsulting.eventservices;
+package com.entechconsulting.eventservices.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.entechconsulting.eventservices.dto.MotionEventDTO;
+import com.entechconsulting.eventservices.repository.MotionEvent;
+import com.entechconsulting.eventservices.repository.MotionEventRepository;
+import com.entechconsulting.eventservices.repository.TempEvent;
+import com.entechconsulting.eventservices.repository.TempEventRepository;
+import com.entechconsulting.eventservices.service.EventService;
 
 @Controller
 @RequestMapping(path="/demo")
