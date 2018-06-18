@@ -1,5 +1,6 @@
 package com.entechconsulting.eventservices.controller;
 
+import com.entechconsulting.eventservices.dto.TempEventDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +43,13 @@ public class EventController{
   public ResponseEntity addMotion(@RequestBody MotionEventDTO motion) {
       System.out.println("Motion Detected " + motion);
       eventService.saveMotionEvent(motion);
+      return ResponseEntity.status(HttpStatus.OK).build();
+  }
+
+  @RequestMapping(value="/addTemp", method = RequestMethod.POST)
+  public ResponseEntity addTemp(@RequestBody TempEventDTO temp){
+      System.out.println("Temp Detected " + temp);
+      eventService.saveTempEvent(temp);
       return ResponseEntity.status(HttpStatus.OK).build();
   }
 }

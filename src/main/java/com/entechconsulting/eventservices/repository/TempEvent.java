@@ -19,7 +19,7 @@ public class TempEvent{
   private String sensor_id;
   private String raw_data;
   private double temp;
-  private String humidity;
+  private double humidity;
 
   //Getters
   public Integer getId(){
@@ -40,7 +40,7 @@ public class TempEvent{
   public double getTemp(){
     return temp;
   }
-  public String getHumidity(){
+  public double getHumidity(){
     return humidity;
   }
 
@@ -63,7 +63,7 @@ public class TempEvent{
   public void setTemp(double temp){
     this.temp = temp;
   }
-  public void setHumidity(String humidity){
+  public void setHumidity(double humidity){
     this.humidity = humidity;
   }
 }
