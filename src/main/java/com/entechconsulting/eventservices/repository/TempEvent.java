@@ -1,32 +1,26 @@
-package com.entechconsulting.ws.eventservices;
+package com.entechconsulting.eventservices.repository;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.*;
 
 @Entity
-@Table(name="motion_event")
-public class MotionEvent{
+@Table(name="temp_event")
+public class TempEvent{
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
   private String occurred_ts;
   private String received_ts;
   private String sensor_id;
   private String raw_data;
-  private byte[] img;
-  
-  public MotionEvent() {
-	  
-  }
-  
-  public MotionEvent(Integer id,String occurred_ts) {
-	  this.id = id;
-	  this.occurred_ts = occurred_ts;
-  }
+  private double temp;
+  private String humidity;
+
   //Getters
   public Integer getId(){
     return id;
@@ -43,8 +37,11 @@ public class MotionEvent{
   public String getRawData(){
     return raw_data;
   }
-  public byte[] getImg(){
-    return img;
+  public double getTemp(){
+    return temp;
+  }
+  public String getHumidity(){
+    return humidity;
   }
 
   //Setters
@@ -63,8 +60,10 @@ public class MotionEvent{
   public void setRawData(String raw_data){
     this.raw_data = raw_data;
   }
-  public void setImg(byte[] img){
-    this.img = img;
+  public void setTemp(double temp){
+    this.temp = temp;
   }
-
+  public void setHumidity(String humidity){
+    this.humidity = humidity;
+  }
 }
