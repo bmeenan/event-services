@@ -1,7 +1,5 @@
 package com.entechconsulting.ws.eventservices;
 
-import java.time.LocalDate;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,4 +29,8 @@ public class EventService {
 
 		return motionEvent;
 	}
+	public MotionEvent getImgById(Integer id) {
+		return motionEventRepository.findImgById(id).iterator().next();
+	}
+	
 }

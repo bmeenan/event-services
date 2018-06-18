@@ -22,6 +22,18 @@ public class MotionEvent{
   public MotionEvent() {
 	  
   }
+ 
+  public MotionEvent(Integer id) {
+	  this.id = id;
+  }
+  public MotionEvent(Integer id, byte[] img) {
+	  this.id = id;
+	  this.img = img;
+  }
+  public MotionEvent(byte[] img) {
+	  this.img = img;
+  }
+  
   
   public MotionEvent(Integer id,String occurred_ts) {
 	  this.id = id;
