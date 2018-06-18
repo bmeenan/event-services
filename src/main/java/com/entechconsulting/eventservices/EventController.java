@@ -1,4 +1,4 @@
-package com.entechconsulting.ws.eventservices;
+package com.entechconsulting.eventservices;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(path="/demo")
-public class MainController{
+public class EventController{
 
   @Autowired
   private TempEventRepository tempEventRepository;

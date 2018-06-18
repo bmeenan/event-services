@@ -1,4 +1,4 @@
-package com.entechconsulting.ws.eventservices;
+package com.entechconsulting.eventservices;
 
 public class MotionEventDTO {
 	//curl --header "Content-Type: application/json" --request POST --data '{"event_occurred":"2018-15-06 14:55:02.789911","sensorId":"motion1","deviceId":"motionPi1","img":"1"}' http://34.239.113.101:8080/demo/addMotion

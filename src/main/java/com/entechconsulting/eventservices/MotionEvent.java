@@ -1,4 +1,4 @@
-package com.entechconsulting.ws.eventservices;
+package com.entechconsulting.eventservices;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
