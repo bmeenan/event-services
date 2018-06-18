@@ -1,7 +1,6 @@
 package com.entechconsulting.eventservices.dto;
 
 public class TempEventDTO {
-    //Localhost === curl --header "Content-Type: application/json" --request POST --data '{"occurred_ts":"2018-15-06 14:55:02.789911","sensorId":"temp1","temp":"98","humidity":"100"}' http://192.168.0.113:8080/demo/addTemp
 
     private String occurred_ts;
     private String sensor_id;

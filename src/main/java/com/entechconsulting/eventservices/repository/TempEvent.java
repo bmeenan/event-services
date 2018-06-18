@@ -28,6 +28,11 @@ public class TempEvent{
       this.id = id;
       this.occurred_ts = occurred_ts;
   }
+  public TempEvent(Integer id, String temp, String humidity){
+      this.id = id;
+      this.temp = temp;
+      this.humidity = humidity;
+  }
   //Getters
   public Integer getId(){
     return id;
