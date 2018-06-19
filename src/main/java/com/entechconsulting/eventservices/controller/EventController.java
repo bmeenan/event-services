@@ -17,6 +17,10 @@ import com.entechconsulting.eventservices.repository.MotionEventRepository;
 import com.entechconsulting.eventservices.repository.TempEvent;
 import com.entechconsulting.eventservices.repository.TempEventRepository;
 import com.entechconsulting.eventservices.service.EventService;
+import com.entechconsulting.eventservices.utilities.CompressionUtils;
+
+import java.io.IOException;
+import java.util.zip.DataFormatException;
 
 @Controller
 @RequestMapping(path="/demo")
@@ -40,14 +44,14 @@ public class EventController{
   }
 
   @RequestMapping(value="/addMotion", method = RequestMethod.POST)
-  public ResponseEntity addMotion(@RequestBody MotionEventDTO motion) {
+  public ResponseEntity addMotion(@RequestBody MotionEventDTO motion) throws IOException {
       System.out.println("Motion Detected " + motion);
       eventService.saveMotionEvent(motion);
       return ResponseEntity.status(HttpStatus.OK).build();
   }
   
   @GetMapping(path="/getImageById/{id}")
-  public @ResponseBody byte[] getImageById(@PathVariable Integer id){
-    return eventService.getImgById(id).getImg();
+  public @ResponseBody byte[] getImageById(@PathVariable Integer id) throws IOException, DataFormatException {
+    return CompressionUtils.decompress(eventService.getImgById(id).getImg());
   }
 }
