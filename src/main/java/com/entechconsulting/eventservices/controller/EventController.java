@@ -1,5 +1,6 @@
 package com.entechconsulting.eventservices.controller;
 
+import com.entechconsulting.eventservices.dto.TempEventDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,34 +21,45 @@ import com.entechconsulting.eventservices.service.EventService;
 
 @Controller
 @RequestMapping(path="/demo")
-public class EventController{
+public class EventController {
 
-  @Autowired
-  private TempEventRepository tempEventRepository;
-  @Autowired
-  private MotionEventRepository motionEventRepository;
-  @Autowired
-  private EventService eventService;
+    @Autowired
+    private TempEventRepository tempEventRepository;
+    @Autowired
+    private MotionEventRepository motionEventRepository;
+    @Autowired
+    private EventService eventService;
 
-  @GetMapping(path="/temps")
-  public @ResponseBody Iterable<TempEvent> getTempEvents(){
-    return tempEventRepository.findAll();
-  }
+    @GetMapping(path = "/temps")
+    public @ResponseBody
+    Iterable<TempEvent> getTempEvents() {
+        return tempEventRepository.findAll();
+    }
 
-  @GetMapping(path="/motions")
-  public @ResponseBody Iterable<MotionEvent> getMotionEvents(){
-	  return motionEventRepository.findAllEvent();
-  }
+    @GetMapping(path = "/motions")
+    public @ResponseBody
+    Iterable<MotionEvent> getMotionEvents() {
+        return motionEventRepository.findAllEvent();
+    }
 
-  @RequestMapping(value="/addMotion", method = RequestMethod.POST)
-  public ResponseEntity addMotion(@RequestBody MotionEventDTO motion) {
-      System.out.println("Motion Detected " + motion);
-      eventService.saveMotionEvent(motion);
-      return ResponseEntity.status(HttpStatus.OK).build();
-  }
-  
-  @GetMapping(path="/getImageById/{id}")
-  public @ResponseBody byte[] getImageById(@PathVariable Integer id){
-    return eventService.getImgById(id).getImg();
-  }
+    @RequestMapping(value = "/addMotion", method = RequestMethod.POST)
+    public ResponseEntity addMotion(@RequestBody MotionEventDTO motion) {
+        System.out.println("Motion Detected " + motion);
+        eventService.saveMotionEvent(motion);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @RequestMapping(value = "/addTemp", method = RequestMethod.POST)
+    public ResponseEntity addTemp(@RequestBody TempEventDTO temp) {
+        System.out.println("Temp Detected " + temp);
+        eventService.saveTempEvent(temp);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @GetMapping(path = "/getImageById/{id}")
+    public @ResponseBody
+    byte[] getImageById(@PathVariable Integer id) {
+        return eventService.getImgById(id).getImg();
+    }
 }
+

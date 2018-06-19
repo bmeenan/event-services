@@ -47,6 +47,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+<<<<<<< HEAD
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.3.0</version>
+		</dependency>
+=======
 
 		<dependency>
 		    <groupId>junit</groupId>
@@ -61,6 +68,7 @@
 		    <scope>test</scope>
 		</dependency>
 
+>>>>>>> 233e3d890b06b310c52f058d777377516abd3e82
 	</dependencies>
 
 	<build>

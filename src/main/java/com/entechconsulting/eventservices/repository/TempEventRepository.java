@@ -5,4 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import com.entechconsulting.eventservices.repository.TempEvent;
 
 public interface TempEventRepository extends CrudRepository<TempEvent,Long>{
+    Iterable<TempEvent> findAll();
 }
