@@ -47,11 +47,28 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+<<<<<<< HEAD
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
 			<version>2.3.0</version>
 		</dependency>
+=======
+
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>4.12</version>
+		    <scope>test</scope>
+		</dependency>
+        <dependency>
+		    <groupId>org.mockito</groupId>
+		    <artifactId>mockito-all</artifactId>
+		    <version>1.10.19</version>
+		    <scope>test</scope>
+		</dependency>
+
+>>>>>>> 233e3d890b06b310c52f058d777377516abd3e82
 	</dependencies>
 
 	<build>
@@ -59,7 +76,19 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>1.5.2.RELEASE</version>
+		    <executions>
+		      <execution>
+		        <goals>
+		          <goal>repackage</goal>
+		        </goals>
+		        <configuration>
+		          <mainClass>com.entechconsulting.eventservices.EventServicesApplication</mainClass>
+		        </configuration>
+		      </execution>
+		    </executions>
 			</plugin>
+
 			<plugin>
           		<groupId>org.flywaydb</groupId>
        			<artifactId>flyway-maven-plugin</artifactId>

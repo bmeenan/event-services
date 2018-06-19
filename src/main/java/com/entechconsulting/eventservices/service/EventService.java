@@ -17,7 +17,7 @@ import java.util.Objects;
 public class EventService {
 	@Autowired
 	private MotionEventRepository motionEventRepository;
-    @Autowired
+	@Autowired
 	private TempEventRepository tempEventRepository;
 
 	public void saveMotionEvent(MotionEventDTO dto) {
@@ -25,6 +25,7 @@ public class EventService {
 		MotionEvent motionEvent = toMotionEvent(dto);
 		motionEventRepository.save(motionEvent);
 	}
+
 	private MotionEvent toMotionEvent(MotionEventDTO dto) {
 		MotionEvent motionEvent = new MotionEvent();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-dd-MM HH:mm:ss");
@@ -42,20 +43,24 @@ public class EventService {
 		TempEvent tempEvent = toTempEvent(dto);
 		tempEventRepository.save(tempEvent);
 	}
-	private TempEvent toTempEvent(TempEventDTO dto){
+
+	private TempEvent toTempEvent(TempEventDTO dto) {
 		TempEvent tempEvent = new TempEvent();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-dd-MM HH:mm:ss");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 
-		if (Objects.nonNull(dto.getOccurred_ts())){
-            tempEvent.setOccurredTs(dto.getOccurred_ts().split("\\.")[0]);
-        }
-
+		if (Objects.nonNull(dto.getOccurred_ts())) {
+			tempEvent.setOccurredTs(dto.getOccurred_ts().split("\\.")[0]);
+		}
 		tempEvent.setRawData(dto.toString());
 		tempEvent.setSensorId(dto.getSensor_id());
 		tempEvent.setTemp(dto.getTemp());
 		tempEvent.setHumidity(dto.getHumidity());
 		tempEvent.setReceivedTs(formatter.format(date));
-		return tempEvent;
+		return tempEvent;}
+
+	public MotionEvent getImgById(Integer id){
+		return motionEventRepository.findImgById(id).iterator().next();
 	}
+
 }
