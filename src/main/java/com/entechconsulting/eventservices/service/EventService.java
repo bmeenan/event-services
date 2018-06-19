@@ -17,12 +17,12 @@ public class EventService {
 	@Autowired
 	private MotionEventRepository motionEventRepository;
 
-	public void saveMotionEvent(MotionEventDTO dto) throws IOException {
+	public void saveMotionEvent(MotionEventDTO dto){
 		//save motion event repository object
 		MotionEvent motionEvent = toMotionEvent(dto);
 		motionEventRepository.save(motionEvent);
 	}
-	private MotionEvent toMotionEvent(MotionEventDTO dto) throws IOException {
+	private MotionEvent toMotionEvent(MotionEventDTO dto){
 		MotionEvent motionEvent = new MotionEvent();
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -30,7 +30,11 @@ public class EventService {
 
 		motionEvent.setOccurredTs(dto.getEvent_occurred().split("\\.")[0]);
 		motionEvent.setRawData(dto.toString());
-		motionEvent.setImg(CompressionUtils.compress(dto.getImg().getBytes()));
+		try {
+			motionEvent.setImg(CompressionUtils.compress(dto.getImg().getBytes()));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		motionEvent.setSensorId(dto.getSensorId());
 		motionEvent.setReceivedTs(formatter.format(date));
 

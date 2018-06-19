@@ -44,14 +44,21 @@ public class EventController{
   }
 
   @RequestMapping(value="/addMotion", method = RequestMethod.POST)
-  public ResponseEntity addMotion(@RequestBody MotionEventDTO motion) throws IOException {
+  public ResponseEntity addMotion(@RequestBody MotionEventDTO motion){
       System.out.println("Motion Detected " + motion);
       eventService.saveMotionEvent(motion);
       return ResponseEntity.status(HttpStatus.OK).build();
   }
   
   @GetMapping(path="/getImageById/{id}")
-  public @ResponseBody byte[] getImageById(@PathVariable Integer id) throws IOException, DataFormatException {
-    return CompressionUtils.decompress(eventService.getImgById(id).getImg());
+  public @ResponseBody byte[] getImageById(@PathVariable Integer id){
+    try {
+      return CompressionUtils.decompress(eventService.getImgById(id).getImg());
+    } catch (IOException e) {
+      e.printStackTrace();
+    } catch (DataFormatException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 }
