@@ -11,27 +11,14 @@ public class MotionEventDTO {
 	public String getEvent_occurred() {
 		return event_occurred;
 	}
-	public void setEvent_occurred(String event_occurred) {
-		this.event_occurred = event_occurred;
-	}
-	public String getSensorId() {
-		return sensorId;
-	}
-	public void setSensorId(String sensorId) {
-		this.sensorId = sensorId;
-	}
-	public String getDeviceId() {
-		return deviceId;
-	}
-	public void setDeviceId(String deviceId) {
-		this.deviceId = deviceId;
-	}
-	public String getImg() {
-		return img;
-	}
-	public void setImg(String img) {
-		this.img = img;
-	}
+	public String getSensorId() { return sensorId; }
+	public String getDeviceId() { return deviceId; }
+    public String getImg() { return img; }
+
+    public void setEvent_occurred(String event_occurred) { this.event_occurred = event_occurred; }
+    public void setSensorId(String sensorId) { this.sensorId = sensorId; }
+    public void setDeviceId(String deviceId) { this.deviceId = deviceId; }
+    public void setImg(String img) { this.img = img; }
 
 
 }
