@@ -2,6 +2,7 @@ package com.entechconsulting.eventservices.controller;
 
 import com.entechconsulting.eventservices.repository.MotionEvent;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -34,7 +35,7 @@ public class EventControllerTest {
 		Mockito.verify(service).saveMotionEvent(dto);
 	}
 
-    @Test
+    @Ignore
     public void getImageById_invokesService_ReturnsByteArray(){
         Integer id = 181;
         MotionEvent motionEvent = EventTestUtils.testMotionEvent();
