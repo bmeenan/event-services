@@ -36,4 +36,7 @@ public class EventService {
 
 		return motionEvent;
 	}
+	public MotionEvent getImgById(Integer id) {
+		return motionEventRepository.findImgById(id).iterator().next();
+	}
 }
