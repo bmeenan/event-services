@@ -71,9 +71,9 @@ public class EventController{
   }
 
   @GetMapping(path="/getTempByDate/{date}")
-  public @ResponseBody Iterable<TempEvent> getTempByDate(@PathVariable String date){
+  public @ResponseBody TempEvent getTempByDate(@PathVariable String date){
 
-      return eventService.getTempByDate(date);
+      return eventService.getTempByDate(date).iterator().next();
 
   }
 
