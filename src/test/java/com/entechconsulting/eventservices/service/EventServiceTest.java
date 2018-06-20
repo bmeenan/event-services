@@ -37,7 +37,7 @@ public class EventServiceTest {
 		
 		eventService.saveMotionEvent(dto);
 		
-		Mockito.verify(motionEventRepository).save(motion);
+		Mockito.verify(motionEventRepository).save(Mockito.any());
 	}
 	
 	@Test
@@ -47,7 +47,7 @@ public class EventServiceTest {
 		
 		eventService.saveTempEvent(dto);
 		
-		Mockito.verify(tempEventRepository).save(temp);
+		Mockito.verify(tempEventRepository).save(Mockito.any());
 	}
 	
 	@Test

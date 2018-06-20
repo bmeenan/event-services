@@ -22,14 +22,6 @@ public class EventTestUtils {
 		dto.setSensorId("testSensorId");
 		return dto;
 	}
-	public static TempEventDTO testTempEventDto() {
-		TempEventDTO dto = new TempEventDTO();
-		dto.setSensor_id("id");
-		dto.setTemp("60");
-		dto.setHumidity("50");
-		dto.setOccurred_ts(LocalDate.now().toString());
-		return dto;
-	}
 	public static MotionEvent testMotionEvent(){
 		MotionEvent motionEvent = new MotionEvent();
 		motionEvent.setId(1);
@@ -41,10 +33,18 @@ public class EventTestUtils {
 			e.printStackTrace();
 		}
 		motionEvent.setImg(arr);
-		motionEvent.setOccurredTs("19:00");
+		motionEvent.setOccurredTs(LocalDate.now().toString());
 		motionEvent.setReceivedTs("19.01");
-		motionEvent.setSensorId("motion1");
+		motionEvent.setSensorId("testSensorId");
 		return motionEvent;
+	}
+	public static TempEventDTO testTempEventDto() {
+		TempEventDTO dto = new TempEventDTO();
+		dto.setSensor_id("testSensorId");
+		dto.setTemp("60");
+		dto.setHumidity("50");
+		dto.setOccurred_ts(LocalDate.now().toString());
+		return dto;
 	}
 	public static TempEvent testTempEvent(){
 		TempEvent temp = new TempEvent();
