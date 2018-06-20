@@ -33,7 +33,14 @@ public class EventTestUtils {
 	public static MotionEvent testMotionEvent(){
 		MotionEvent motionEvent = new MotionEvent();
 		motionEvent.setId(1);
-		motionEvent.setImg(new byte[] {000});
+		byte[] arr = new byte[0000]; 
+		try {
+			arr = CompressionUtils.compress(new byte[010011]);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		motionEvent.setImg(arr);
 		motionEvent.setOccurredTs("19:00");
 		motionEvent.setReceivedTs("19.01");
 		motionEvent.setSensorId("motion1");
