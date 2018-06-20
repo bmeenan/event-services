@@ -11,7 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 import java.util.TimeZone;
@@ -73,5 +76,30 @@ public class EventService {
 	public MotionEvent getImgById(Integer id){
 		return motionEventRepository.findImgById(id).iterator().next();
 	}
+
+	public Iterable<TempEvent> getTempByDate(String date){
+        int milliseconds_for_change =900000;
+
+		//do date formating here
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		formatter.setTimeZone(TimeZone.getDefault());
+
+        Date pastDate = null;
+        Date futureDate = null;
+        try {
+            pastDate = new Date(formatter.parse(date).getTime() - milliseconds_for_change);
+            futureDate = new Date(formatter.parse(date).getTime() + milliseconds_for_change);
+
+            return tempEventRepository.getTempHumidity(formatter.format(pastDate),formatter.format( futureDate));
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
+	}
+
+
 
 }
