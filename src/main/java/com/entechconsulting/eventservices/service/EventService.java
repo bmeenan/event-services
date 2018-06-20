@@ -1,22 +1,16 @@
 package com.entechconsulting.eventservices.service;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.entechconsulting.eventservices.dto.MotionEventDTO;
 import com.entechconsulting.eventservices.dto.TempEventDTO;
 import com.entechconsulting.eventservices.repository.MotionEvent;
 import com.entechconsulting.eventservices.repository.MotionEventRepository;
-import com.entechconsulting.eventservices.utilities.CompressionUtils;
-
 import com.entechconsulting.eventservices.repository.TempEvent;
 import com.entechconsulting.eventservices.repository.TempEventRepository;
+import com.entechconsulting.eventservices.utilities.CompressionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -38,7 +32,6 @@ public class EventService {
 
 	private MotionEvent toMotionEvent(MotionEventDTO dto){
 		MotionEvent motionEvent = new MotionEvent();
-
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		formatter.setTimeZone(TimeZone.getDefault());
 

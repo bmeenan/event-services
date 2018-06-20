@@ -51,6 +51,13 @@ public class EventController{
       return ResponseEntity.status(HttpStatus.OK).build();
   }
   
+    @RequestMapping(value = "/addTemp", method = RequestMethod.POST)
+    public ResponseEntity addTemp(@RequestBody TempEventDTO temp) {
+        System.out.println("Temp Detected " + temp);
+        eventService.saveTempEvent(temp);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+	
   @GetMapping(path="/getImageById/{id}")
   public @ResponseBody byte[] getImageById(@PathVariable Integer id){
     try {
