@@ -37,9 +37,13 @@ public class EventService {
 
 	private MotionEvent toMotionEvent(MotionEventDTO dto){
 		MotionEvent motionEvent = new MotionEvent();
+<<<<<<< HEAD
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+=======
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+>>>>>>> 55951f848c87c402084377f2f984bbfeaad1ddd1
 		Date date = new Date();
 		motionEvent.setOccurredTs(dto.getEvent_occurred().split("\\.")[0]);
 		motionEvent.setRawData(dto.toString());
