@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
+import java.util.TimeZone;
 
 
 @Service
@@ -39,6 +40,7 @@ public class EventService {
 		MotionEvent motionEvent = new MotionEvent();
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		formatter.setTimeZone(TimeZone.getDefault());
 
 		Date date = new Date();
 		motionEvent.setOccurredTs(dto.getEvent_occurred().split("\\.")[0]);
