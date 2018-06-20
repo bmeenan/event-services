@@ -70,5 +70,12 @@ public class EventController{
     return null;
   }
 
+  @GetMapping(path="/getTempByDate/{date}")
+  public @ResponseBody TempEvent getTempByDate(@PathVariable String date){
+
+      return eventService.getTempByDate(date);
+
+  }
+
 }
 

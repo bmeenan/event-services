@@ -70,4 +70,12 @@ public class EventService {
 		return motionEventRepository.findImgById(id).iterator().next();
 	}
 
+	public TempEvent getTempByDate(String date){
+
+		//do formating here
+
+
+		return tempEventRepository.getTempHumidity(upperDate, lowerDate);
+	}
+
 }
