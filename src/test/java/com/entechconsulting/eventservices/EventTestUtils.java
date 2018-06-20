@@ -3,6 +3,7 @@ package com.entechconsulting.eventservices;
 import java.time.LocalDate;
 
 import com.entechconsulting.eventservices.dto.MotionEventDTO;
+import com.entechconsulting.eventservices.dto.TempEventDTO;
 import com.entechconsulting.eventservices.repository.MotionEvent;
 
 public class EventTestUtils {
@@ -13,6 +14,14 @@ public class EventTestUtils {
 		dto.setEvent_occurred(LocalDate.now().toString());
 		dto.setImg("testImageData");
 		dto.setSensorId("testSensorId");
+		return dto;
+	}
+	public static TempEventDTO testTempEventDto() {
+		TempEventDTO dto = new TempEventDTO();
+		dto.setSensor_id("id");
+		dto.setTemp("60");
+		dto.setHumidity("50");
+		dto.setOccurred_ts(LocalDate.now().toString());
 		return dto;
 	}
 	public static MotionEvent testMotionEvent(){
