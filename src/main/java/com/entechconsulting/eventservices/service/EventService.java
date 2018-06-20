@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
+import java.util.TimeZone;
 
 
 @Service
@@ -32,6 +33,8 @@ public class EventService {
 	private MotionEvent toMotionEvent(MotionEventDTO dto){
 		MotionEvent motionEvent = new MotionEvent();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		formatter.setTimeZone(TimeZone.getDefault());
+
 		Date date = new Date();
 		motionEvent.setOccurredTs(dto.getEvent_occurred().split("\\.")[0]);
 		motionEvent.setRawData(dto.toString());
@@ -54,6 +57,7 @@ public class EventService {
 	private TempEvent toTempEvent(TempEventDTO dto) {
 		TempEvent tempEvent = new TempEvent();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		formatter.setTimeZone(TimeZone.getDefault());
 		Date date = new Date();
 
 		if (Objects.nonNull(dto.getOccurred_ts())) {
