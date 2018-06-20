@@ -64,6 +64,7 @@ public class EventService {
 	private TempEvent toTempEvent(TempEventDTO dto) {
 		TempEvent tempEvent = new TempEvent();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		formatter.setTimeZone(TimeZone.getDefault());
 		Date date = new Date();
 
 		if (Objects.nonNull(dto.getOccurred_ts())) {
