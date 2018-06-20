@@ -33,6 +33,10 @@ public class TempEvent{
       this.temp = temp;
       this.humidity = humidity;
   }
+  public TempEvent(String temp, String humidity){
+    this.temp = temp;
+    this.humidity = humidity;
+  }
   //Getters
   public Integer getId(){
     return id;
