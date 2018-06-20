@@ -34,33 +34,45 @@ public class EventController{
   @Autowired
   private EventService eventService;
 
+  //returns all rows and columns in the temp_events table
   @GetMapping(path="/temps")
   public @ResponseBody Iterable<TempEvent> getTempEvents(){
     return tempEventRepository.findAll();
   }
 
+  //returns all rows in the motion_event table (just id and occurred_ts columns)
   @GetMapping(path="/motions")
   public @ResponseBody Iterable<MotionEvent> getMotionEvents(){
 	  return motionEventRepository.findAllEvent();
   }
 
+  //uses POST to save a motion event to the db
   @RequestMapping(value="/addMotion", method = RequestMethod.POST)
   public ResponseEntity addMotion(@RequestBody MotionEventDTO motion){
-      System.out.println("Motion Detected " + motion);
-      eventService.saveMotionEvent(motion);
-      return ResponseEntity.status(HttpStatus.OK).build();
+    //log for the system
+    System.out.println("Motion Detected " + motion);
+    //calls the event service method
+    eventService.saveMotionEvent(motion);
+    //returns the response status to the pi
+    return ResponseEntity.status(HttpStatus.OK).build();
   }
-  
-    @RequestMapping(value = "/addTemp", method = RequestMethod.POST)
-    public ResponseEntity addTemp(@RequestBody TempEventDTO temp) {
-        System.out.println("Temp Detected " + temp);
-        eventService.saveTempEvent(temp);
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
-	
+
+  //uses POST to save a temp event to the db
+  @RequestMapping(value = "/addTemp", method = RequestMethod.POST)
+  public ResponseEntity addTemp(@RequestBody TempEventDTO temp) {
+    //log for the system
+    System.out.println("Temp Detected " + temp);
+    //calls the event service method
+    eventService.saveTempEvent(temp);
+    //returns the response status to the pi
+    return ResponseEntity.status(HttpStatus.OK).build();
+  }
+
+  //uses GET to retrieve an image from the db by its id
   @GetMapping(path="/getImageById/{id}")
   public @ResponseBody byte[] getImageById(@PathVariable Integer id){
     try {
+      //decompresses the image before sending it to the angular project
       return CompressionUtils.decompress(eventService.getImgById(id).getImg());
     } catch (IOException e) {
       e.printStackTrace();
@@ -70,11 +82,10 @@ public class EventController{
     return null;
   }
 
+  //uses GET to retrieve a temp event by closest date and time
   @GetMapping(path="/getTempByDate/{date}")
   public @ResponseBody TempEvent getTempByDate(@PathVariable String date){
-
-      return eventService.getTempByDate(date).iterator().next();
-
+    return eventService.getTempByDate(date).iterator().next();
   }
 
 }

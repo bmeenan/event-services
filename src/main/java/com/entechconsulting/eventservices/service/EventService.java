@@ -27,14 +27,18 @@ public class EventService {
 	@Autowired
 	private TempEventRepository tempEventRepository;
 
+	//public method that changes DTO to motion event object, then calls the motion event repo
 	public void saveMotionEvent(MotionEventDTO dto){
 		//save motion event repository object
 		MotionEvent motionEvent = toMotionEvent(dto);
 		motionEventRepository.save(motionEvent);
 	}
 
+	//converts dto to motion event object
 	private MotionEvent toMotionEvent(MotionEventDTO dto){
 		MotionEvent motionEvent = new MotionEvent();
+
+		//sets appropriate date format
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		formatter.setTimeZone(TimeZone.getDefault());
 
@@ -51,14 +55,18 @@ public class EventService {
 		return motionEvent;
 	}
 
+	//public method that changes DTO to temp event object, then calls the temp event repo
 	public void saveTempEvent(TempEventDTO dto) {
 		//save temp event repository object
 		TempEvent tempEvent = toTempEvent(dto);
 		tempEventRepository.save(tempEvent);
 	}
 
+	//converts dto to temp event object
 	private TempEvent toTempEvent(TempEventDTO dto) {
 		TempEvent tempEvent = new TempEvent();
+
+		//appropriate date settings
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		formatter.setTimeZone(TimeZone.getDefault());
 		Date date = new Date();
@@ -71,16 +79,19 @@ public class EventService {
 		tempEvent.setTemp(dto.getTemp());
 		tempEvent.setHumidity(dto.getHumidity());
 		tempEvent.setReceivedTs(formatter.format(date));
-		return tempEvent;}
+		return tempEvent;
+	}
 
+	//passed id and calls the motionEventRepo
 	public MotionEvent getImgById(Integer id){
 		return motionEventRepository.findImgById(id).iterator().next();
 	}
 
+	//gets occurred date, sets boundaries, and then calls temp event repo to get teh possible temp events
 	public Iterable<TempEvent> getTempByDate(String date){
         int milliseconds_for_change =900000;
 
-		//do date formating here
+		//do date formatting here
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		formatter.setTimeZone(TimeZone.getDefault());
 
