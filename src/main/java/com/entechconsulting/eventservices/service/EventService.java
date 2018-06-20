@@ -11,9 +11,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
+import java.util.TimeZone;
 
 
 @Service
@@ -54,6 +58,7 @@ public class EventService {
 	private TempEvent toTempEvent(TempEventDTO dto) {
 		TempEvent tempEvent = new TempEvent();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		formatter.setTimeZone(TimeZone.getDefault());
 		Date date = new Date();
 
 		if (Objects.nonNull(dto.getOccurred_ts())) {
@@ -70,12 +75,29 @@ public class EventService {
 		return motionEventRepository.findImgById(id).iterator().next();
 	}
 
-	public TempEvent getTempByDate(String date){
+	public Iterable<TempEvent> getTempByDate(String date){
+        int milliseconds_for_change =900000;
 
-		//do formating here
+		//do date formating here
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		formatter.setTimeZone(TimeZone.getDefault());
+
+        Date pastDate = null;
+        Date futureDate = null;
+        try {
+            pastDate = new Date(formatter.parse(date).getTime() - milliseconds_for_change);
+            futureDate = new Date(formatter.parse(date).getTime() + milliseconds_for_change);
+
+            return tempEventRepository.getTempHumidity(formatter.format(pastDate),formatter.format( futureDate));
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
 
-		return tempEventRepository.getTempHumidity(upperDate, lowerDate);
+        return null;
 	}
+
+
 
 }
