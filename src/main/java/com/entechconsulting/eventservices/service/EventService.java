@@ -1,22 +1,16 @@
 package com.entechconsulting.eventservices.service;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.entechconsulting.eventservices.dto.MotionEventDTO;
 import com.entechconsulting.eventservices.dto.TempEventDTO;
 import com.entechconsulting.eventservices.repository.MotionEvent;
 import com.entechconsulting.eventservices.repository.MotionEventRepository;
-import com.entechconsulting.eventservices.utilities.CompressionUtils;
-
 import com.entechconsulting.eventservices.repository.TempEvent;
 import com.entechconsulting.eventservices.repository.TempEventRepository;
+import com.entechconsulting.eventservices.utilities.CompressionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -37,13 +31,7 @@ public class EventService {
 
 	private MotionEvent toMotionEvent(MotionEventDTO dto){
 		MotionEvent motionEvent = new MotionEvent();
-<<<<<<< HEAD
-
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-=======
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
->>>>>>> 55951f848c87c402084377f2f984bbfeaad1ddd1
 		Date date = new Date();
 		motionEvent.setOccurredTs(dto.getEvent_occurred().split("\\.")[0]);
 		motionEvent.setRawData(dto.toString());

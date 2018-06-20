@@ -47,10 +47,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
-=======
-
->>>>>>> 55951f848c87c402084377f2f984bbfeaad1ddd1
 		<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
@@ -69,10 +65,6 @@
 		    <version>1.10.19</version>
 		    <scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
-=======
-
->>>>>>> 55951f848c87c402084377f2f984bbfeaad1ddd1
 	</dependencies>
 
 	<build>
