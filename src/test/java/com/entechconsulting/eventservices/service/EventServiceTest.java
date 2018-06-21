@@ -1,13 +1,16 @@
 package com.entechconsulting.eventservices.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TimeZone;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.entechconsulting.eventservices.EventTestUtils;
@@ -17,11 +20,13 @@ import com.entechconsulting.eventservices.repository.MotionEvent;
 import com.entechconsulting.eventservices.repository.MotionEventRepository;
 import com.entechconsulting.eventservices.repository.TempEvent;
 import com.entechconsulting.eventservices.repository.TempEventRepository;
+import org.mockito.junit.MockitoRule;
+import org.mockito.quality.Strictness;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EventServiceTest {
 
-	@Mock
+    @Mock
 	MotionEventRepository motionEventRepository;
 	
 	@Mock
@@ -70,11 +75,9 @@ public class EventServiceTest {
 		TempEvent temp = new TempEvent();
 		List<TempEvent> list = new ArrayList<TempEvent>();
 		list.add(temp);
-		
-		Mockito.when(tempEventRepository.getTempHumidity(date, date)).thenReturn(list);
+
+		Mockito.when(tempEventRepository.getTempHumidity(Mockito.anyString(), Mockito.anyString())).thenReturn(list);
 		
 		eventService.getTempByDate(date);
-		
-		
 	}
 }
