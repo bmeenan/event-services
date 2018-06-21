@@ -3,7 +3,6 @@ package com.entechconsulting.eventservices.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -55,8 +54,7 @@ public class EventControllerTest {
         controller.getImageById(id);
         
         Mockito.verify(service).getImgById(id);
-        
-
+       
     }
     
     @Test
@@ -67,13 +65,18 @@ public class EventControllerTest {
     	list.add(temp);
     	Mockito.when(service.getTempByDate(date)).thenReturn(list);
     	
-    	TempEvent actual = controller.getTempByDate(date);
+    	controller.getTempByDate(date);
+    		
+    }
+    
+    @Test
+    public void getTempByDate_invokesService_ReturnsNoData() {
+    	String date = "2018-20-06 14:40:00";
+    	List<TempEvent> list = new ArrayList<TempEvent>();
+    	Mockito.when(service.getTempByDate(date)).thenReturn(list);
     	
-    	Assert.assertNotNull(actual);
-    	Assert.assertEquals(temp, actual);
-    	Mockito.verify(service).getTempByDate(date);
-    	
-    	
+    	controller.getTempByDate(date);
+    		
     }
 	
 	@Test

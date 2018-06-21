@@ -77,10 +77,15 @@ public class EventController{
         }
         return null;
     }
-
+    
     //uses GET to retrieve a temp event by closest date and time
     @GetMapping(path="/getTempByDate/{date}")
     public @ResponseBody TempEvent getTempByDate(@PathVariable String date){
+
+      if(eventService.getTempByDate(date).iterator().hasNext()){
         return eventService.getTempByDate(date).iterator().next();
+      }
+      return (new TempEvent("No Temperature Data","No Humidity Data"));
+
     }
 }
