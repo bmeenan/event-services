@@ -1,6 +1,8 @@
 package com.entechconsulting.eventservices.controller;
 
-import com.entechconsulting.eventservices.dto.TempEventDTO;
+import java.io.IOException;
+import java.util.zip.DataFormatException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,15 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import com.entechconsulting.eventservices.dto.MotionEventDTO;
+import com.entechconsulting.eventservices.dto.TempEventDTO;
 import com.entechconsulting.eventservices.repository.MotionEvent;
 import com.entechconsulting.eventservices.repository.MotionEventRepository;
 import com.entechconsulting.eventservices.repository.TempEvent;
 import com.entechconsulting.eventservices.repository.TempEventRepository;
 import com.entechconsulting.eventservices.service.EventService;
 import com.entechconsulting.eventservices.utilities.CompressionUtils;
-
-import java.io.IOException;
-import java.util.zip.DataFormatException;
 
 @Controller
 @CrossOrigin(origins = "*")
@@ -85,7 +85,10 @@ public class EventController{
       if(eventService.getTempByDate(date).iterator().hasNext()){
         return eventService.getTempByDate(date).iterator().next();
       }
-      return (new TempEvent("No Temperature Data","No Humidity Data"));
+      
+      String temp = null;
+      String hum = null;
+      return (new TempEvent(temp,hum));
 
     }
 }
