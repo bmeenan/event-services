@@ -1,4 +1,4 @@
-CREATE TABLE `entechpi`.`motion_event` (
+CREATE TABLE `motion_event` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `occurred_ts` VARCHAR(45) NOT NULL,
   `received_ts` VARCHAR(45) NOT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE `entechpi`.`motion_event` (
   `img` MEDIUMBLOB NOT NULL,
   PRIMARY KEY (`id`)
 );
-CREATE TABLE `entechpi`.`temp_event` (
+CREATE TABLE `temp_event` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `occurred_ts` VARCHAR(45) NOT NULL,
   `received_ts` VARCHAR(45) NOT NULL,

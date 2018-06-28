@@ -16,7 +16,6 @@ public class MotionEvent{
   private String occurred_ts;
   private String received_ts;
   private String sensor_id;
-  private String raw_data;
   private byte[] img;
 
   public MotionEvent() {
@@ -50,9 +49,6 @@ public class MotionEvent{
   public String getSensorId(){
     return sensor_id;
   }
-  public String getRawData(){
-    return raw_data;
-  }
   public byte[] getImg(){
     return img;
   }
@@ -69,9 +65,6 @@ public class MotionEvent{
   }
   public void setSensorId(String sensor_id){
     this.sensor_id = sensor_id;
-  }
-  public void setRawData(String raw_data){
-    this.raw_data = raw_data;
   }
   public void setImg(byte[] img){
     this.img = img;

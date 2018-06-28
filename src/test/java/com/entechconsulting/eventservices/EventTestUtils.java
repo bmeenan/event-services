@@ -51,7 +51,6 @@ public class EventTestUtils {
 		temp.setId(1);
 		temp.setHumidity("60");
 		temp.setOccurredTs("Now");
-		temp.setRawData("{}");
 		temp.setReceivedTs("Nower");
 		temp.setSensorId("temp");
 		temp.setTemp("80");
@@ -64,7 +63,6 @@ public class EventTestUtils {
 
 		Date date = new Date();
 		motionEvent.setOccurredTs(dto.getEvent_occurred().split("\\.")[0]);
-		motionEvent.setRawData(dto.toString());
 		try {
 			motionEvent.setImg(CompressionUtils.compress(dto.getImg().getBytes()));
 		} catch (IOException e) {
