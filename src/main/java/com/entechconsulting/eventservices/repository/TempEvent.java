@@ -1,12 +1,10 @@
 package com.entechconsulting.eventservices.repository;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.*;
-import java.util.*;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="temp_event")
@@ -18,7 +16,6 @@ public class TempEvent{
   private String occurred_ts;
   private String received_ts;
   private String sensor_id;
-  private String raw_data;
   private String temp;
   private String humidity;
 
@@ -50,9 +47,6 @@ public class TempEvent{
   public String getSensorId(){
     return sensor_id;
   }
-  public String getRawData(){
-    return raw_data;
-  }
   public String getTemp(){
     return temp;
   }
@@ -72,9 +66,6 @@ public class TempEvent{
   }
   public void setSensorId(String sensor_id){
     this.sensor_id = sensor_id;
-  }
-  public void setRawData(String raw_data){
-    this.raw_data = raw_data;
   }
   public void setTemp(String temp){
     this.temp = temp;

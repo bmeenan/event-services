@@ -44,7 +44,7 @@ public class EventController{
 
     //uses POST to save a motion event to the db
     @RequestMapping(value="/addMotion", method = RequestMethod.POST)
-    public ResponseEntity addMotion(@RequestBody MotionEventDTO motion){
+    public ResponseEntity<Void> addMotion(@RequestBody MotionEventDTO motion){
         //log for the system
         System.out.println("Motion Detected " + motion);
         //calls the event service method
@@ -55,7 +55,7 @@ public class EventController{
 
     //uses POST to save a temp event to the db
     @RequestMapping(value = "/addTemp", method = RequestMethod.POST)
-    public ResponseEntity addTemp(@RequestBody TempEventDTO temp) {
+    public ResponseEntity<Void> addTemp(@RequestBody TempEventDTO temp) {
         //log for the system
         System.out.println("Temp Detected " + temp);
         //calls the event service method

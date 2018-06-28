@@ -42,7 +42,6 @@ public class EventService {
 
 		Date date = new Date();
 		motionEvent.setOccurredTs(dto.getEvent_occurred().split("\\.")[0]);
-		motionEvent.setRawData(dto.toString());
 		try {
 			motionEvent.setImg(CompressionUtils.compress(dto.getImg().getBytes()));
 		} catch (IOException e) {
@@ -72,7 +71,6 @@ public class EventService {
 		if (Objects.nonNull(dto.getOccurred_ts())) {
 			tempEvent.setOccurredTs(dto.getOccurred_ts().split("\\.")[0]);
 		}
-		tempEvent.setRawData(dto.toString());
 		tempEvent.setSensorId(dto.getSensor_id());
 		tempEvent.setTemp(dto.getTemp());
 		tempEvent.setHumidity(dto.getHumidity());

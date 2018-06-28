@@ -1,16 +1,13 @@
 package com.entechconsulting.eventservices.service;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TimeZone;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import com.entechconsulting.eventservices.EventTestUtils;
@@ -20,8 +17,6 @@ import com.entechconsulting.eventservices.repository.MotionEvent;
 import com.entechconsulting.eventservices.repository.MotionEventRepository;
 import com.entechconsulting.eventservices.repository.TempEvent;
 import com.entechconsulting.eventservices.repository.TempEventRepository;
-import org.mockito.junit.MockitoRule;
-import org.mockito.quality.Strictness;
 
 @RunWith(MockitoJUnitRunner.class)
 public class EventServiceTest {
@@ -37,21 +32,15 @@ public class EventServiceTest {
 	
 	@Test
 	public void saveMotionEvent_withValidData_callsRepository() {
-		MotionEventDTO dto = EventTestUtils.testMotionEventDto();
-		MotionEvent motion = EventTestUtils.testMotionEvent();
-		
+		MotionEventDTO dto = EventTestUtils.testMotionEventDto();		
 		eventService.saveMotionEvent(dto);
-		
 		Mockito.verify(motionEventRepository).save(Mockito.any());
 	}
 	
 	@Test
 	public void saveTempEvent_callsRepo() {
-		TempEventDTO dto = EventTestUtils.testTempEventDto();
-		TempEvent temp = EventTestUtils.testTempEvent();
-		
+		TempEventDTO dto = EventTestUtils.testTempEventDto();		
 		eventService.saveTempEvent(dto);
-		
 		Mockito.verify(tempEventRepository).save(Mockito.any());
 	}
 	
