@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 import java.util.TimeZone;
+import java.util.logging.Logger;
 
 
 @Service
@@ -25,11 +26,15 @@ public class EventService {
 	@Autowired
 	private TempEventRepository tempEventRepository;
 
+	private Logger logger;
+
 	//public method that changes DTO to motion event object, then calls the motion event repo
 	public void saveMotionEvent(MotionEventDTO dto){
 		//save motion event repository object
 		MotionEvent motionEvent = toMotionEvent(dto);
+		logger.info("Saving motion event...");
 		motionEventRepository.save(motionEvent);
+		logger.info("Motion Event saved");
 	}
 
 	//converts dto to motion event object
@@ -42,9 +47,11 @@ public class EventService {
 
 		Date date = new Date();
 		motionEvent.setOccurredTs(dto.getEvent_occurred().split("\\.")[0]);
+		logger.info("Compressing received image...");
 		try {
 			motionEvent.setImg(CompressionUtils.compress(dto.getImg().getBytes()));
 		} catch (IOException e) {
+			logger.warning("Compression Failed");
 			e.printStackTrace();
 		}
 		motionEvent.setSensorId(dto.getSensorId());
@@ -56,7 +63,9 @@ public class EventService {
 	public void saveTempEvent(TempEventDTO dto) {
 		//save temp event repository object
 		TempEvent tempEvent = toTempEvent(dto);
+		logger.info("Saving Temp Event...");
 		tempEventRepository.save(tempEvent);
+		logger.info("Temp Event saved");
 	}
 
 	//converts dto to temp event object
@@ -80,6 +89,7 @@ public class EventService {
 
 	//passed id and calls the motionEventRepo
 	public MotionEvent getImgById(Integer id){
+		logger.info("Returning image from Database");
 		return motionEventRepository.findImgById(id).iterator().next();
 	}
 
@@ -91,19 +101,18 @@ public class EventService {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		formatter.setTimeZone(TimeZone.getDefault());
 
-        Date pastDate = null;
-        Date futureDate = null;
+        Date pastDate;
+        Date futureDate;
         try {
             pastDate = new Date(formatter.parse(date).getTime() - milliseconds_for_change);
             futureDate = new Date(formatter.parse(date).getTime() + milliseconds_for_change);
 
+            logger.info("Returning Temp events from " + formatter.format(pastDate) + " to " + formatter.format( futureDate));
             return tempEventRepository.getTempHumidity(formatter.format(pastDate),formatter.format( futureDate));
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-
         return null;
 	}
 
