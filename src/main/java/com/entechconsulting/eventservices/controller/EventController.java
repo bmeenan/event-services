@@ -3,6 +3,8 @@ package com.entechconsulting.eventservices.controller;
 import java.io.IOException;
 import java.util.zip.DataFormatException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,15 +36,19 @@ public class EventController {
 	@Autowired
 	private EventService eventService;
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(EventController.class);
+
 	// returns all rows and columns in the temp_events table
 	@RequestMapping(value = { "/demo/temps", "/events/temps" }, method = RequestMethod.GET)
 	public @ResponseBody Iterable<TempEvent> getTempEvents() {
+		LOGGER.info("Returning all temperature data...");
 		return tempEventRepository.findAll();
 	}
 
 	// returns all rows in the motion_event table (just id and occurred_ts columns)
 	@RequestMapping(value = { "/demo/motions", "/events/motions" }, method = RequestMethod.GET)
 	public @ResponseBody Iterable<MotionEvent> getMotionEvents() {
+		LOGGER.info("Returning all motion event data...");
 		return motionEventRepository.findAllEvent();
 	}
 
@@ -50,8 +56,9 @@ public class EventController {
 	@RequestMapping(value = { "/demo/addMotion", "/events/addMotion" }, method = RequestMethod.POST)
 	public ResponseEntity<Void> addMotion(@RequestBody MotionEventDTO motion) {
 		// log for the system
-		System.out.println("Motion Detected " + motion);
+		LOGGER.info("Motion Detected: " + motion);
 		// calls the event service method
+		LOGGER.info("Calling Event Service 'saveMotionEvent(motion)' method...");
 		eventService.saveMotionEvent(motion);
 		// returns the response status to the pi
 		return ResponseEntity.status(HttpStatus.OK).build();
@@ -61,8 +68,9 @@ public class EventController {
 	@RequestMapping(value = { "/demo/addTemp", "/events/addTemp" }, method = RequestMethod.POST)
 	public ResponseEntity<Void> addTemp(@RequestBody TempEventDTO temp) {
 		// log for the system
-		System.out.println("Temp Detected " + temp);
+		LOGGER.info("Temp Detected: " + temp);
 		// calls the event service method
+		LOGGER.info("Calling Event Service 'saveTempEvent(temp)' method...");
 		eventService.saveTempEvent(temp);
 		// returns the response status to the pi
 		return ResponseEntity.status(HttpStatus.OK).build();
@@ -71,6 +79,7 @@ public class EventController {
 	// uses GET to retrieve an image from the db by its id
 	@RequestMapping(value = { "/demo/getImageById/{id}", "/events/getImageById/{id}" }, method = RequestMethod.GET)
 	public @ResponseBody byte[] getImageById(@PathVariable Integer id) {
+		LOGGER.info("Decompressing image...");
 		try {
 			// decompresses the image before sending it to the angular project
 			return CompressionUtils.decompress(eventService.getImgById(id).getImg());
@@ -79,6 +88,7 @@ public class EventController {
 		} catch (DataFormatException e) {
 			e.printStackTrace();
 		}
+		LOGGER.warn("Decompression failed");
 		return null;
 	}
 
@@ -86,11 +96,12 @@ public class EventController {
 	@RequestMapping(value = { "/demo/getTempByDate/{date}",
 			"/events/getTempByDate/{date}" }, method = RequestMethod.GET)
 	public @ResponseBody TempEvent getTempByDate(@PathVariable String date) {
-
+		LOGGER.info("Calling Event Service 'getTempByDate(date)' method...");
 		if (eventService.getTempByDate(date).iterator().hasNext()) {
+			LOGGER.info("Dates found");
 			return eventService.getTempByDate(date).iterator().next();
 		}
-
+		LOGGER.info("No dates found");
 		String temp = null;
 		String hum = null;
 		return (new TempEvent(temp, hum));

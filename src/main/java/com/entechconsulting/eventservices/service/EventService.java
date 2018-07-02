@@ -1,5 +1,6 @@
 package com.entechconsulting.eventservices.service;
 
+import com.entechconsulting.eventservices.controller.EventController;
 import com.entechconsulting.eventservices.dto.MotionEventDTO;
 import com.entechconsulting.eventservices.dto.TempEventDTO;
 import com.entechconsulting.eventservices.repository.MotionEvent;
@@ -16,6 +17,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 import java.util.TimeZone;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 @Service
@@ -25,11 +28,15 @@ public class EventService {
 	@Autowired
 	private TempEventRepository tempEventRepository;
 
+	private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(EventController.class);
+
 	//public method that changes DTO to motion event object, then calls the motion event repo
 	public void saveMotionEvent(MotionEventDTO dto){
 		//save motion event repository object
 		MotionEvent motionEvent = toMotionEvent(dto);
+		LOGGER.info("Saving motion event...");
 		motionEventRepository.save(motionEvent);
+		LOGGER.info("Motion Event saved");
 	}
 
 	//converts dto to motion event object
@@ -42,9 +49,11 @@ public class EventService {
 
 		Date date = new Date();
 		motionEvent.setOccurredTs(dto.getEvent_occurred().split("\\.")[0]);
+		LOGGER.info("Compressing received image...");
 		try {
 			motionEvent.setImg(CompressionUtils.compress(dto.getImg().getBytes()));
 		} catch (IOException e) {
+			LOGGER.warn("Compression Failed");
 			e.printStackTrace();
 		}
 		motionEvent.setSensorId(dto.getSensorId());
@@ -56,7 +65,9 @@ public class EventService {
 	public void saveTempEvent(TempEventDTO dto) {
 		//save temp event repository object
 		TempEvent tempEvent = toTempEvent(dto);
+		LOGGER.info("Saving Temp Event...");
 		tempEventRepository.save(tempEvent);
+		LOGGER.info("Temp Event saved");
 	}
 
 	//converts dto to temp event object
@@ -80,6 +91,7 @@ public class EventService {
 
 	//passed id and calls the motionEventRepo
 	public MotionEvent getImgById(Integer id){
+		LOGGER.info("Returning image from Database");
 		return motionEventRepository.findImgById(id).iterator().next();
 	}
 
@@ -91,19 +103,18 @@ public class EventService {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		formatter.setTimeZone(TimeZone.getDefault());
 
-        Date pastDate = null;
-        Date futureDate = null;
+        Date pastDate;
+        Date futureDate;
         try {
             pastDate = new Date(formatter.parse(date).getTime() - milliseconds_for_change);
             futureDate = new Date(formatter.parse(date).getTime() + milliseconds_for_change);
 
+			LOGGER.info("Returning Temp events from " + formatter.format(pastDate) + " to " + formatter.format( futureDate));
             return tempEventRepository.getTempHumidity(formatter.format(pastDate),formatter.format( futureDate));
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-
         return null;
 	}
 
