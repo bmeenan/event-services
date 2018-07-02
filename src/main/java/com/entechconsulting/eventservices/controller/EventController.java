@@ -20,7 +20,6 @@ import com.entechconsulting.eventservices.utilities.CompressionUtils;
 
 @Controller
 @CrossOrigin(origins = "*")
-@RequestMapping(path="/demo")
 public class EventController{
 
     @Autowired
@@ -31,19 +30,19 @@ public class EventController{
     private EventService eventService;
 
     //returns all rows and columns in the temp_events table
-    @GetMapping(path="/temps")
+    @RequestMapping(value="/demo/temps", method = RequestMethod.GET)
     public @ResponseBody Iterable<TempEvent> getTempEvents(){
         return tempEventRepository.findAll();
     }
 
     //returns all rows in the motion_event table (just id and occurred_ts columns)
-    @GetMapping(path="/motions")
+    @RequestMapping(value="/demo/motions", method = RequestMethod.GET)
     public @ResponseBody Iterable<MotionEvent> getMotionEvents(){
       return motionEventRepository.findAllEvent();
     }
 
     //uses POST to save a motion event to the db
-    @RequestMapping(value="/addMotion", method = RequestMethod.POST)
+    @RequestMapping(value="/demo/addMotion", method = RequestMethod.POST)
     public ResponseEntity<Void> addMotion(@RequestBody MotionEventDTO motion){
         //log for the system
         System.out.println("Motion Detected " + motion);
@@ -54,7 +53,7 @@ public class EventController{
     }
 
     //uses POST to save a temp event to the db
-    @RequestMapping(value = "/addTemp", method = RequestMethod.POST)
+    @RequestMapping(value = "/demo/addTemp", method = RequestMethod.POST)
     public ResponseEntity<Void> addTemp(@RequestBody TempEventDTO temp) {
         //log for the system
         System.out.println("Temp Detected " + temp);
@@ -65,7 +64,7 @@ public class EventController{
     }
 
     //uses GET to retrieve an image from the db by its id
-    @GetMapping(path="/getImageById/{id}")
+    @RequestMapping(value = "/demo/getImageById/{id}", method = RequestMethod.GET)
     public @ResponseBody byte[] getImageById(@PathVariable Integer id){
         try {
             //decompresses the image before sending it to the angular project
@@ -79,7 +78,7 @@ public class EventController{
     }
     
     //uses GET to retrieve a temp event by closest date and time
-    @GetMapping(path="/getTempByDate/{date}")
+    @RequestMapping(value = "/demo/getTempByDate/{date}", method = RequestMethod.GET)
     public @ResponseBody TempEvent getTempByDate(@PathVariable String date){
 
       if(eventService.getTempByDate(date).iterator().hasNext()){
