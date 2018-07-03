@@ -29,6 +29,8 @@ import com.entechconsulting.eventservices.utilities.CompressionUtils;
 @CrossOrigin(origins = "*")
 public class EventController {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(EventController.class);
+
 	@Autowired
 	private TempEventRepository tempEventRepository;
 	@Autowired
@@ -36,24 +38,22 @@ public class EventController {
 	@Autowired
 	private EventService eventService;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(EventController.class);
-
 	// returns all rows and columns in the temp_events table
-	@RequestMapping(value = { "/demo/temps", "/events/temps" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/events/temps", method = RequestMethod.GET)
 	public @ResponseBody Iterable<TempEvent> getTempEvents() {
 		LOGGER.info("Returning all temperature data...");
 		return tempEventRepository.findAll();
 	}
 
 	// returns all rows in the motion_event table (just id and occurred_ts columns)
-	@RequestMapping(value = { "/demo/motions", "/events/motions" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/events/motions", method = RequestMethod.GET)
 	public @ResponseBody Iterable<MotionEvent> getMotionEvents() {
 		LOGGER.info("Returning all motion event data...");
 		return motionEventRepository.findAllEvent();
 	}
 
 	// uses POST to save a motion event to the db
-	@RequestMapping(value = { "/demo/addMotion", "/events/addMotion" }, method = RequestMethod.POST)
+	@RequestMapping(value = "/events/addMotion", method = RequestMethod.POST)
 	public ResponseEntity<Void> addMotion(@RequestBody MotionEventDTO motion) {
 		// log for the system
 		LOGGER.info("Motion Detected: " + motion);
@@ -65,7 +65,7 @@ public class EventController {
 	}
 
 	// uses POST to save a temp event to the db
-	@RequestMapping(value = { "/demo/addTemp", "/events/addTemp" }, method = RequestMethod.POST)
+	@RequestMapping(value = "/events/addTemp", method = RequestMethod.POST)
 	public ResponseEntity<Void> addTemp(@RequestBody TempEventDTO temp) {
 		// log for the system
 		LOGGER.info("Temp Detected: " + temp);
@@ -77,7 +77,7 @@ public class EventController {
 	}
 
 	// uses GET to retrieve an image from the db by its id
-	@RequestMapping(value = { "/demo/getImageById/{id}", "/events/getImageById/{id}" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/events/getImageById/{id}", method = RequestMethod.GET)
 	public @ResponseBody byte[] getImageById(@PathVariable Integer id) {
 		LOGGER.info("Decompressing image...");
 		try {
@@ -93,8 +93,7 @@ public class EventController {
 	}
 
 	// uses GET to retrieve a temp event by closest date and time
-	@RequestMapping(value = { "/demo/getTempByDate/{date}",
-			"/events/getTempByDate/{date}" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/events/getTempByDate/{date}", method = RequestMethod.GET)
 	public @ResponseBody TempEvent getTempByDate(@PathVariable String date) {
 		LOGGER.info("Calling Event Service 'getTempByDate(date)' method...");
 		if (eventService.getTempByDate(date).iterator().hasNext()) {
