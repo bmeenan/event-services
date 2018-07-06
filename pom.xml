@@ -90,7 +90,7 @@
        			<artifactId>flyway-maven-plugin</artifactId>
 	          	<version>5.1.1</version>
 				<configuration>
-					<url>jdbc:mysql://gradtechjnjdev.cxohlepxhfmz.us-east-1.rds.amazonaws.com/entechpi</url>
+					<url>jdbc:mysql://gradtechjnjdev.cxohlepxhfmz.us-east-1.rds.amazonaws.com/gradtechjnjdev</url>
 					<user>gradtechjnj_rw</user>
 					<password>gradt3chjnjd3v</password>
 				</configuration>
