@@ -25,6 +25,11 @@ import com.entechconsulting.eventservices.repository.TempEventRepository;
 import com.entechconsulting.eventservices.service.EventService;
 import com.entechconsulting.eventservices.utilities.CompressionUtils;
 
+/**
+ * The controller class is the main entry point to event services. Here, all
+ * endpoints are defined. Should the project grow, we may eventually decide to
+ * create additional controller classes
+ */
 @Controller
 @CrossOrigin(origins = "*")
 public class EventController {
