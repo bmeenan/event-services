@@ -1,8 +1,8 @@
-# event-services
+# entech-event-services
 
 **Introcution**
 
-Event Services is a Java-based microservice that provides a RESTful API used to store and retrieve event-related data.
+Entech Event Services is a Java-based microservice that provides a RESTful API used to store and retrieve event-related data. It was developed by the original JnJ GradTech team in June'2018.
 
 **Technology Stack**
 - Java 8
